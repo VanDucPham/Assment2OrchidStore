@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thêm sản phẩm mới</title>
+    <link rel="stylesheet" th:href="@{/css/admin.css}" />
+</head>
+<body>
+    <h1>Thêm sản phẩm mới</h1>
+    <form th:action="@{/admin/products/add}" method="post" enctype="multipart/form-data">
+        <label>Tên sản phẩm:</label>
+        <input type="text" name="orchidName" required><br>
+        <label>Mô tả:</label>
+        <textarea name="orchidDescription" required></textarea><br>
+        <label>Giá:</label>
+        <input type="number" name="price" required><br>
+        <label>Danh mục:</label>
+        <select name="category.categoryId" required>
+            <option th:each="cat : ${categories}" th:value="${cat.categoryId}" th:text="${cat.categoryName}"></option>
+        </select><br>
+        <label>Loại:</label>
+        <select name="isNatural">
+            <option value="true">Tự nhiên</option>
+            <option value="false">Nhân tạo</option>
+        </select><br>
+        <label>Ảnh:</label>
+        <input type="file" name="imageFile" th:src="@{'/uploads/orchids/' + ${orchid.orchidUrl}}" required><br>
+        <button type="submit">Thêm sản phẩm</button>
+    </form>
+    <a th:href="@{/admin/products}">Quay lại danh sách</a>
+</body>
+</html> 

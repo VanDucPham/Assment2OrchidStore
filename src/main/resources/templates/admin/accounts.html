@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Quản lý tài khoản</title>
+</head>
+<body>
+    <h1>Quản lý tài khoản</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Quyền</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="account : ${accounts}">
+                <td th:text="${account.accId}"></td>
+                <td th:text="${account.email}"></td>
+                <td th:text="${account.role.roleName}"></td>
+                <td>
+                    <a th:href="@{'/admin/accounts/edit/' + ${account.accId}}">Sửa</a> |
+                    <a th:href="@{'/admin/accounts/delete/' + ${account.accId}}" onclick="return confirm('Xác nhận xóa?')">Xóa</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/admin}">Quay lại Dashboard</a>
+</body>
+</html> 

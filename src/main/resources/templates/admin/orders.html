@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Quản lý đơn hàng</title>
+</head>
+<body>
+    <h1>Quản lý đơn hàng</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Ngày đặt</th>
+                <th>Trạng thái</th>
+                <th>Tổng tiền</th>
+                <th>Khách hàng</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="order : ${orders}">
+                <td th:text="${order.id}"></td>
+                <td th:text="${order.orderDate}"></td>
+                <td th:text="${order.orderStatus}"></td>
+                <td th:text="${order.totalAmount}"></td>
+                <td th:text="${order.account.email}"></td>
+                <td>
+                    <a th:href="@{'/admin/orders/view/' + ${order.id}}">Xem</a> |
+                    <a th:href="@{'/admin/orders/delete/' + ${order.id}}" onclick="return confirm('Xác nhận xóa?')">Xóa</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/admin}">Quay lại Dashboard</a>
+</body>
+</html> 

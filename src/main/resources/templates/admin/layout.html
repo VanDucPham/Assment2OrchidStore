@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin - Orchids Store</title>
+    <link rel="stylesheet" th:href="@{/css/admin.css}" />
+</head>
+<body>
+    <header>
+        <h1>Quản trị Orchids Store</h1>
+        <nav>
+            <ul>
+                <li><a th:href="@{/admin}">Dashboard</a></li>
+                <li><a th:href="@{/admin/products}">Sản phẩm</a></li>
+                <li><a th:href="@{/admin/categories}">Danh mục</a></li>
+                <li><a th:href="@{/admin/orders}">Đơn hàng</a></li>
+                <li><a th:href="@{/admin/accounts}">Tài khoản</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div th:fragment="section">
+            <th:block th:replace="~{::section}" />
+        </div>
+    </main>
+</body>
+</html> 

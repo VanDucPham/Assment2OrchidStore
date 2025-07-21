@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<section>
+    <h2>Chỉnh sửa sản phẩm</h2>
+    <form th:action="@{'/admin/products/edit/' + ${orchid.orchidId}}" method="post" enctype="multipart/form-data">
+        <label>Tên sản phẩm:</label>
+        <input type="text" name="orchidName" th:value="${orchid.orchidName}" required><br>
+        <label>Mô tả:</label>
+        <textarea name="orchidDescription" required th:text="${orchid.orchidDescription}"></textarea><br>
+        <label>Giá:</label>
+        <input type="number" name="price" th:value="${orchid.price}" required><br>
+        <label>Danh mục:</label>
+        <select name="category.categoryId" required>
+            <option th:each="cat : ${categories}" th:value="${cat.categoryId}" th:text="${cat.categoryName}" th:selected="${cat.categoryId} == ${orchid.category.categoryId}"></option>
+        </select><br>
+        <label>Loại:</label>
+        <select name="isNatural">
+            <option th:value="true" th:selected="${orchid.isNatural}">Tự nhiên</option>
+            <option th:value="false" th:selected="${!orchid.isNatural}">Nhân tạo</option>
+        </select><br>
+        <label>Ảnh hiện tại:</label>
+        <img th:src="@{'/uploads/orchids/' + ${orchid.orchidUrl}}" alt="Ảnh" width="80"><br>
+        <label>Chọn ảnh mới (nếu muốn thay):</label>
+        <input type="file" name="imageFile" accept="image/*"><br>
+        <button type="submit">Cập nhật sản phẩm</button>
+    </form>
+    <a th:href="@{/admin/products}">Quay lại danh sách</a>
+</section>
+</html> 

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Quản lý sản phẩm</title>
+</head>
+<body>
+    <h1>Quản lý sản phẩm</h1>
+    <a th:href="@{/admin/products/add}">Thêm sản phẩm mới</a>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tên</th>
+                <th>Giá</th>
+                <th>Danh mục</th>
+                <th>Ảnh</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="orchid : ${orchids}">
+                <td th:text="${orchid.orchidId}"></td>
+                <td th:text="${orchid.orchidName}"></td>
+                <td th:text="${orchid.price}"></td>
+                <td th:text="${orchid.category.categoryName}"></td>
+                <td><img th:src="@{'/uploads/orchids/' + ${orchid.orchidUrl}}" alt="Ảnh" width="80"></td>
+                <td>
+                    <a th:href="@{'/admin/products/edit/' + ${orchid.orchidId}}">Sửa</a> |
+                    <a th:href="@{'/admin/products/delete/' + ${orchid.orchidId}}" onclick="return confirm('Xác nhận xóa?')">Xóa</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/admin}">Quay lại Dashboard</a>
+</body>
+</html> 
